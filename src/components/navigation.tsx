@@ -10,7 +10,10 @@ import {
 import {
   SignInButton,
   SignOutButton,
-  //UserButton
+  SignUpButton,
+  //UserButton,
+  SignedIn,
+  SignedOut,
 } from "@clerk/nextjs";
 
 import Link from "next/link";
@@ -31,10 +34,15 @@ export default function Navigation() {
         </span>
       </NavbarBrand>
       <div className="flex md:order-2 space-x-4">
-        <SignInButton mode="modal" />
+        <SignedOut>
+          <SignInButton mode="modal" />
+          <SignUpButton mode="modal" />
+        </SignedOut>
         {/* <UserButton /> */}
-        <Link href="/user-profile">Profile</Link>
-        <SignOutButton />
+        <SignedIn>
+          <SignOutButton />
+          <Link href="/user-profile">Profile</Link>
+        </SignedIn>
 
         <NavbarToggle />
       </div>
